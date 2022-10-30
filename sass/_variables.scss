@@ -1,0 +1,36 @@
+$colors: (
+  "primary-orange": hsl(35, 77%, 62%),
+  "primary-red": hsl(5, 85%, 63%),
+  "neutral-white": hsl(36, 100%, 99%),
+  "neutral-gray-blue": hsl(233, 8%, 79%),
+  "neutral-dark-gray-blue": hsl(236, 13%, 42%),
+  "neutral-dark-blue": hsl(240, 100%, 5%),
+);
+
+$font-sizes: (
+  "font-size-small": calc(1.2rem + 0.2vw),
+  "font-size-small-heading": calc(1.2rem + 0.4vw),
+  "font-size-regular": calc(1.5rem + 0.6vw),
+  "font-size-medium": calc(1.5rem + 1vw),
+  "font-size-xmedium": calc(1.5rem + 2vw),
+  "font-size-large": calc(1.5rem + 3vw),
+  "font-size-xlarge": calc(2.5rem + 3vw),
+);
+
+$font-weights: (
+  "font-weight-regular": 400,
+  "font-weight-bold": 700,
+  "font-weight-extra-bold": 800,
+);
+
+@function color($color-style) {
+  @return map-get($map: $colors, $key: $color-style);
+}
+
+@function font-size($font-size-style) {
+  @return map-get($map: $font-sizes, $key: $font-size-style);
+}
+
+@function font-weight($font-weight-style) {
+  @return map-get($map: $font-weights, $key: $font-weight-style);
+}

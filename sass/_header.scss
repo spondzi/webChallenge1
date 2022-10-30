@@ -1,0 +1,146 @@
+.header {
+  grid-column: center-start / center-end;
+  @extend %sec-padding;
+
+  &__overlay {
+    display: none;
+  }
+
+  &__mobile-menu {
+    display: none;
+  }
+
+  &__nav {
+    grid-column: 1/-1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--logo {
+      width: 6rem;
+      height: 6rem;
+      object-fit: contain;
+    }
+
+    &--list {
+      display: flex;
+      list-style: none;
+      &__item {
+        a:visited,
+        a:link {
+          font-size: font-size(font-size-small);
+          color: color(neutral-dark-gray-blue);
+          font-weight: font-weight(font-weight-regular);
+          text-decoration: none;
+          padding: 1rem 2rem;
+          margin-right: 1rem;
+
+          transition: color 0.2s ease-in-out;
+
+          &:hover {
+            color: color(primary-orange);
+          }
+        }
+      }
+    }
+  }
+
+  @include media-mobile {
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    &__mobile-menu {
+      display: block;
+      position: absolute;
+      width: 4rem;
+      height: 2rem;
+      top: 4rem;
+      right: 2rem;
+      z-index: 3;
+      cursor: pointer;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &--line-1,
+      &--line-2,
+      &--line-3 {
+        position: absolute;
+        background-color: #000;
+        width: 100%;
+        height: 0.3rem;
+        opacity: 1;
+
+        top: calc(50% - 1.5rem);
+        left: 0;
+
+        transition: all 0.3s ease-in-out;
+      }
+
+      &--line-1 {
+        transform: translateY(-250%);
+      }
+
+      &--line-3 {
+        transform: translateY(250%);
+      }
+
+      &.active {
+        span.header__mobile-menu--line-1 {
+          transform: translateY(0) rotate(45deg);
+        }
+        span.header__mobile-menu--line-3 {
+          transform: translateY(0) rotate(-45deg);
+        }
+
+        span.header__mobile-menu--line-2 {
+          opacity: 0;
+        }
+      }
+    }
+    &__nav {
+      &--list {
+        flex-direction: column;
+        position: absolute;
+        background-color: #fff;
+        height: 100vh;
+        width: 70vw;
+        right: -100%;
+        opacity: 0;
+        top: 0;
+        z-index: 2;
+        padding: 15rem 0 0;
+
+        transition: all 0.3s ease-in-out;
+
+        &__item {
+          margin-bottom: 3vh;
+          a:visited,
+          a:link {
+            font-size: font-size(font-size-regular);
+            margin-bottom: 8vh;
+          }
+        }
+
+        &.active {
+          right: 0;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
